@@ -16,7 +16,7 @@ try{
     stage('Deploy docker'){
           echo "Docker Image Tag Name: ${dockerImageTag}"
           sh "docker stop vpn-service-deploy || true && docker rm vpn-service-deploy || true"
-          sh "docker run --name vpn-service-deploy -d -p 8081:8081 vpn-service-deploy:${env.BUILD_NUMBER}"
+          sh "docker run --name vpn-service-deploy -d -p 8081:8080 vpn-service-deploy:${env.BUILD_NUMBER}"
     }
 }catch(e){
     currentBuild.result = "FAILED"
