@@ -6,7 +6,7 @@ try{
     stage('Clone Repo') {
         // for display purposes
         // Get some code from a GitHub repository
-        git url: 'https://gitlab.com/nnishad/vpn-server.git',
+        git url: 'https://github.com/nnishad/vpn-server',
             credentialsId: 'nnishad',
             branch: 'main'
      }
