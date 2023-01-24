@@ -1,10 +1,7 @@
 node {
-	def mvnHome	
-	// Get the Maven tool.
-	mvnHome = tool 'MAVEN'
+
 	def applicationName='vpn-server'
-	def dockerRepoUrl = "34.122.253.69:8083"
-	
+
 	def dockerImage	
 	
 	stage('Code checkout') { 
