@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM arm64v8/adoptopenjdk
 
 ARG APP_NAME="vpn-service"
 ARG APP_VERSION="0.0.1"
