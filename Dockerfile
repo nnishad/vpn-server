@@ -1,4 +1,4 @@
-FROM arm64v8/adoptopenjdk
+FROM openjdk:17-jre-alpine
 
 ARG APP_NAME="vpn-server"
 ARG APP_VERSION="0.0.1-SNAPSHOT"
