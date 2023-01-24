@@ -8,7 +8,7 @@ node {
 		echo "==========================================Code checkout starts====================================================="
 		// Get some code from a GitHub repository
 		def repo = "https://github.com/nnishad/${applicationName}.git"
-		git branch: 'master',credentialsId: 'nnishad',url: repo
+		git branch: 'main',credentialsId: 'nnishad',url: repo
 		echo "==========================================Code checkout ends====================================================="
 	}
 
