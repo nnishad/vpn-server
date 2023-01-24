@@ -28,7 +28,7 @@ node {
 
 		sh "'./gradlew' clean bootJar"
 		//sh "'${mvnHome}/bin/mvn' clean package -Dmaven.test.skip=true -U"
-		sh "cp /var/lib/jenkins/workspace/${applicationName}/build/libs//${applicationName}-0.0.1-SNAPSHOT.jar /var/lib/jenkins/workspace/${applicationName}"
+		sh "cp /var/lib/jenkins/workspace/${applicationName}/build/libs/${applicationName}-0.0.1-SNAPSHOT.jar /var/lib/jenkins/workspace/${applicationName}"
 		echo "==========================================Build Code ends====================================================="
 	}
 
