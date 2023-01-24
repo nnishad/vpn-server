@@ -5,6 +5,7 @@ plugins {
 }
 
 group = 'com.nikhilnishad'
+project.archivesBaseName = 'vpn-server'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
