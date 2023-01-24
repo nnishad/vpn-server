@@ -1,4 +1,4 @@
-FROM openjdk:17-jre-alpine
+FROM openjdk:17-jdk-slim
 
 ARG APP_NAME="vpn-server"
 ARG APP_VERSION="0.0.1-SNAPSHOT"
