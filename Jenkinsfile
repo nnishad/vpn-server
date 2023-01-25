@@ -58,7 +58,7 @@ node {
         		} else {
         		    echo "No instance was running. You can create new one."
         		}
-        		def publishPort=2024
+        		def publishPort=1024
         		def applicationPort=8080
         		sh "docker run --name ${applicationName}-${env.BRANCH_NAME} -p ${publishPort}:${applicationPort} -d ${env.BRANCH_NAME}/${applicationName}-${env.BRANCH_NAME}"
         		echo "==========================================Application Deployment ends====================================================="
