@@ -32,11 +32,6 @@ node {
 		echo "==========================================Build Code ends====================================================="
 	}
 
-	stage('Test image') {
-                    dockerImage.inside {
-                        sh 'echo "Tests passed"'
-                    }
-    }
 
     if(env.BRANCH_NAME=="main" || env.BRANCH_NAME== "develop"){
 
@@ -47,6 +42,12 @@ node {
 
         		echo "==========================================Build Docker Image ends====================================================="
         	}
+
+        		stage('Test image') {
+                                dockerImage.inside {
+                                    sh 'echo "Tests passed"'
+                                }
+                }
 
         	stage('Application Deployment'){
         		echo "==========================================Application Deployment starts====================================================="
