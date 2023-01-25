@@ -32,29 +32,36 @@ node {
 		echo "==========================================Build Code ends====================================================="
 	}
 
-	stage ('Build Docker Image'){
-		echo "==========================================Build Docker Image starts====================================================="			
-		dockerImage = docker.build("${env.BRANCH_NAME}/${applicationName}-${env.BRANCH_NAME}")
-		
-		echo "==========================================Build Docker Image ends====================================================="
-	}
 	stage('Test image') {
-        dockerImage.inside {
-            sh 'echo "Tests passed"'
-        }
+                    dockerImage.inside {
+                        sh 'echo "Tests passed"'
+                    }
     }
-	stage('Application Deployment'){
-		echo "==========================================Application Deployment starts====================================================="
-		def inspectExitCode = sh script: "docker container inspect ${applicationName}-${env.BRANCH_NAME}", returnStatus: true
-		if (inspectExitCode == 0) {
-		    sh "docker stop ${applicationName}-${env.BRANCH_NAME}"
-			sh "docker rm ${applicationName}-${env.BRANCH_NAME}"
-		} else {
-		    echo "No instance was running. You can create new one."
-		}
-		def publishPort=2024
-		def applicationPort=8080
-		sh "docker run --name ${applicationName}-${env.BRANCH_NAME} -p ${publishPort}:${applicationPort} -d ${env.BRANCH_NAME}/${applicationName}-${env.BRANCH_NAME}"
-		echo "==========================================Application Deployment ends====================================================="
-	}
+
+    if(env.BRANCH_NAME=="main" || env.BRANCH_NAME== "develop"){
+
+
+        stage ('Build Docker Image'){
+        		echo "==========================================Build Docker Image starts====================================================="
+        		dockerImage = docker.build("${env.BRANCH_NAME}/${applicationName}-${env.BRANCH_NAME}")
+
+        		echo "==========================================Build Docker Image ends====================================================="
+        	}
+
+        	stage('Application Deployment'){
+        		echo "==========================================Application Deployment starts====================================================="
+        		def inspectExitCode = sh script: "docker container inspect ${applicationName}-${env.BRANCH_NAME}", returnStatus: true
+        		if (inspectExitCode == 0) {
+        		    sh "docker stop ${applicationName}-${env.BRANCH_NAME}"
+        			sh "docker rm ${applicationName}-${env.BRANCH_NAME}"
+        		} else {
+        		    echo "No instance was running. You can create new one."
+        		}
+        		def publishPort=2024
+        		def applicationPort=8080
+        		sh "docker run --name ${applicationName}-${env.BRANCH_NAME} -p ${publishPort}:${applicationPort} -d ${env.BRANCH_NAME}/${applicationName}-${env.BRANCH_NAME}"
+        		echo "==========================================Application Deployment ends====================================================="
+        	}
+
+    }
 }
